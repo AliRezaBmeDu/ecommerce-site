@@ -1,6 +1,6 @@
 import { trusted } from 'mongoose';
-import { hashPassword } from '../helpers/authHelper';
-import userModel from '../models/userModel'
+import {hashPassword, comparePassword} from '../helpers/authHelper.js';
+import userModel from '../models/userModel.js'
 
 export const registerController = async (req, res) => {
     try {
