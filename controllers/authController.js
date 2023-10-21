@@ -3,7 +3,6 @@ import {hashPassword, comparePassword} from '../helpers/authHelper.js';
 import userModel from '../models/userModel.js'
 import jsonwebtoken from 'jsonwebtoken';
 import { compare } from 'bcrypt';
-import { restart } from 'nodemon';
 
 export const registerController = async (req, res) => {
     try {
