@@ -1,7 +1,7 @@
 import { trusted } from 'mongoose';
 import {hashPassword, comparePassword} from '../helpers/authHelper.js';
 import userModel from '../models/userModel.js'
-import jsonwebtoken from 'jsonwebtoken';
+import JWT from 'jsonwebtoken';
 import { compare } from 'bcrypt';
 
 export const registerController = async (req, res) => {
@@ -52,8 +52,8 @@ export const registerController = async (req, res) => {
     }
 }
 
-//POST LOGIN
-export const loginController = async (req,registerController) => {
+//POST LOGIN || POST
+export const loginController = async (req,res) => {
     try {
         const { email, password } = req.body
         //validation
