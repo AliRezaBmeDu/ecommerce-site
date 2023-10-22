@@ -8,7 +8,7 @@ const Footer = () => {
         <p className='text-center mt-3'>
           <Link to='/about'>About</Link>
           |
-          <Link to='/cpmtact'>Contact</Link>
+          <Link to='/contact'>Contact</Link>
           |
           <Link to='/policy'>Priacy Policy</Link>
         </p>
