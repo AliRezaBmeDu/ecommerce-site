@@ -8,3 +8,51 @@
 }
 
 /* font-family: 'Poppins', sans-serif; */
+
+/* Navbar.css */
+.navbar {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 6px gray;
+  --webkit-box-shadow: 0 8px 6px gray;
+  border-bottom: solid gray !important;
+}
+
+.nav-link {
+  font-weight: 300 !important;
+}
+
+.active {
+  border-bottom: 2px solid black;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-family: 'roboto', sans-serif;
+  letter-spacing: 3px;
+}
+
+/* Footer */
+.footer {
+  color: white;
+  margin:auto;
+  padding: 25px;
+  background-color: --webkit-linear-gradient(
+    to right,
+    #434343,
+    #000
+  );
+}
+
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
+
+.footer a:hover {
+  color: #ffefba;
+  border-bottom: 1px solid #ffefbb;
+}
