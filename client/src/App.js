@@ -8,12 +8,14 @@ import PagenotFound from './pages/PagenotFound';
 import Register from './pages/Auth/Register';
 import { ToastContainer } from 'react-toastify';
 import Login from './pages/Auth/Login';
+import Dashboard from './user/Dashboard';
 
 function App() {
   return (
     <React.Fragment>
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path= '/about' element={<About/>} />
