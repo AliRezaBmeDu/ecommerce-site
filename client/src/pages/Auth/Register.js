@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout'
-import {toast} from 'react-toastify';
+import toast from 'react-hot-toast';
 import axios from 'axios';
+import "../../styles/AuthStyles.css";
 
 const Register = () => {
     const [name, setName] = useState("")
@@ -17,8 +18,8 @@ const Register = () => {
         try {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, 
             {name, email, password, phone, address});
-            if(res.data.success) {
-                toast.success(res.data.message)
+            if( res && res.data.success) {
+                toast.success(res.data && res.data.message)
                 navigate('/login')
             } else {
                 toast.error(res.data.message)
@@ -32,7 +33,7 @@ const Register = () => {
 
   return (
     <Layout title={'Register Now'}>
-        <div className='register'>
+        <div className='form-container'>
             <h1>Register Now</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
