@@ -103,6 +103,24 @@ export const loginController = async (req,res) => {
     }
 }
 
+//ForgotPasswordController
+
+export const forgotPasswordController = async () => {
+    try {
+        const {email, question, newPassword} =req.body
+        if(!email) {
+            res.status(400).send({message: "Email required"})
+        }
+    } catch(error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: "something went wrong",
+            error
+        })
+    }
+}
+
 //test controller
 export const testController = (req, res) => {
     res.send("Protected Route")

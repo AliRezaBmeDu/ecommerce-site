@@ -1,5 +1,8 @@
 import express from 'express';
-import { registerController, loginController, testController } from  '../controllers/authController.js';
+import { registerController,
+        loginController,
+        testController,
+        forgotPasswordController } from  '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 
 //router object
@@ -11,6 +14,9 @@ router.post('/register', registerController)
 
 //Login || method post
 router.post('/login', loginController)
+
+//Forgot Password || POST
+router.post('/forget-password', forgotPasswordController)
 
 //test routes
 router.get('/test', requireSignIn, isAdmin, testController)
