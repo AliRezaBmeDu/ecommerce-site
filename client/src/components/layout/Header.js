@@ -1,8 +1,19 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import {AiOutlineShopping} from 'react-icons/ai';
+import { useAuth } from '../../context/auth';
+import toast from 'react-hot-toast';
 
 const Header = () => {
+    const [auth, setAuth] = useAuth();
+
+    const handleLogout = () => {
+        setAuth({
+            ...auth, user: null, token: ""
+        })
+        localStorage.removeItem('auth')
+        toast.success('Logout successfull')
+    }
   return (
     <React.Fragment>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -25,16 +36,31 @@ const Header = () => {
                                 category
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink to="/register" className="nav-link" href="#">
-                                register
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink to="/login" className="nav-link" href="#">
-                                Login
-                            </NavLink>
-                        </li>
+                        {
+                            !auth.user ?  (
+                                <React.Fragment>
+                                    <li className="nav-item">
+                                        <NavLink to="/register" className="nav-link" href="#">
+                                            register
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink  to="/login" className="nav-link" href="#">
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <li className="nav-item">
+                                        <NavLink onClick={handleLogout} to="/login" className="nav-link" href="#">
+                                            Logout
+                                        </NavLink>
+                                    </li>
+                                </React.Fragment>
+                            )
+                        }
+                        
                         <li className="nav-item">
                             <NavLink to="/cart" className="nav-link" href="#">
                                 Cart (0)
