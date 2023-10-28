@@ -18,7 +18,6 @@ function App() {
         <Route path='/dashboard' element={<PrivateRoute/>}>
           <Route path='' element={<Dashboard />} />
         </Route>
-        
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path= '/about' element={<About/>} />
