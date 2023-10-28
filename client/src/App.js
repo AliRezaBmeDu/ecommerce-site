@@ -7,7 +7,7 @@ import Policy from './pages/Policy';
 import PagenotFound from './pages/PagenotFound';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
-import Dashboard from './user/Dashboard';
+import Dashboard from './pages/user/Dashboard';
 
 function App() {
   return (
