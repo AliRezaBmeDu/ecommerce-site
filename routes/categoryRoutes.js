@@ -1,10 +1,14 @@
 import express from 'express';
-import { isAdmin, requireSignIn } from '../middlewares/authMiddleware';
-import { createCategoryController } from '../controllers/categoryController';
+import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
+import { createCategoryController, updateCategoryController } from '../controllers/categoryController.js';
 
 const router = express.Router();
 
 //routes
-router.post('create-category', requireSignIn, isAdmin, createCategoryController)
 
+//create category
+router.post('/create-category', requireSignIn, isAdmin, createCategoryController)
+
+//update category
+router.put('/update-category/:id', requireSignIn, isAdmin, updateCategoryController)
 export default router
