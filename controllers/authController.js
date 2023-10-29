@@ -109,9 +109,9 @@ export const loginController = async (req,res) => {
 
 //ForgotPasswordController
 
-export const forgotPasswordController = async () => {
+export const forgotPasswordController = async (req, res) => {
     try {
-        const {email, answer, newPassword} =req.body
+        const { email, answer, newPassword } = req.body
         if(!email) {
             res.status(400).send({message: "Email required"})
         }
@@ -119,7 +119,7 @@ export const forgotPasswordController = async () => {
             res.status(400).send({message: "answer required"})
         }
         if(!newPassword) {
-            res.status(400).send({message: "newp password required"})
+            res.status(400).send({message: "new password required"})
         }
         //check
         const user = await userModel.findOne({ email, answer})
@@ -132,7 +132,7 @@ export const forgotPasswordController = async () => {
         }
         const hashed = await hashPassword(newPassword)
         await userModel.findByIdAndUpdate(user._id, { password: hashed });
-        res.status(500).send({
+        res.status(200).send({
             success: true,
             message: "Password Reset Successfully"
         })

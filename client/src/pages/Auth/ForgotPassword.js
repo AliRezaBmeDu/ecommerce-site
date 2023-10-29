@@ -16,7 +16,7 @@ const ForgotPasssword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API}//api/v1/auth/forgot-password`, {
+      const res = await axios.post("http://localhost:8080/api/v1/auth/forgot-password", {
         email,
         newPassword,
         answer,
@@ -30,7 +30,7 @@ const ForgotPasssword = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Something went wrong. Cannot send req");
     }
   };
   return (
