@@ -1,23 +1,22 @@
 import React from 'react'
 import Layout from '../../components/layout/Layout'
-import UserMenu from '../../components/layout/UserMenu'
+import AdminMenu from '../../components/layout/AdminMenu'
 import { useAuth } from '../../context/auth'
 
-const Dashboard = () => {
-  const [auth] = useAuth();
+const AdminDashboard = () => {
+  const [auth] = useAuth()
   return (
-    <Layout title={'Dashboard- Ecommerce site'}>
+    <Layout title={'Admin Dashboard'}>
       <div className='container-fluid m-3 p-3'>
         <div className='row'>
           <div className='col-md-3'>
-            <UserMenu />
+            <AdminMenu />
           </div>
           <div className='col-md-9'>
             <div className='card w-75 p-3'>
-              <h3>User Name: {auth?.user?.name}</h3>
-              <h3>User Email: {auth?.user?.email}</h3>
-              <h3>User Address: {auth?.user?.address}</h3>
-              <h3>User Contact: {auth?.user?.phone}</h3>
+              <h3>Admin Name: {auth?.user?.name}</h3>
+              <h3>Admin Email: {auth?.user?.email}</h3>
+              <h3>Admin Contact: {auth?.user?.phone}</h3>
             </div>
           </div>
         </div>
@@ -26,4 +25,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default AdminDashboard
