@@ -76,7 +76,7 @@ export const singleCategoryController = async (req, res) => {
         res.status(200).send({
             success: true,
             message: 'Get single category successfully',
-            category
+            singleCategory
         })
 
     } catch (error) {
@@ -84,6 +84,24 @@ export const singleCategoryController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: 'Error while getting single category',
+            error
+        })
+    }
+}
+
+export const deleteCategoryController = async (req, res) => {
+    try {
+        const {id} = req.params;
+        await categoryModel.findByIdAndDelete(id)
+        res.status(200).send({
+            success: true,
+            message: 'Cattegory Deleted successfully'
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Error while deleting',
             error
         })
     }
