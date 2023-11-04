@@ -10,9 +10,10 @@ const CreateCategory = () => {
     //get all cat
     const getAllCategory = async () => {
         try {
-            const {data} = axios.get('/api/v1/category/get-category')
+            const {data} =  await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`)
+            console.log(`data:${data}`)
             if (data.success) {
-                setCategories(data);
+                setCategories(data.category);
             }
         } catch(error) {
             console.log(error)
@@ -20,7 +21,7 @@ const CreateCategory = () => {
         }
     };
     useEffect(() => {
-        getAllCategory
+        getAllCategory();
     }, [])
   return (
     <Layout title={'Admin- Create Category'}>
@@ -35,29 +36,15 @@ const CreateCategory = () => {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colSpan={2}>Larry the Bird</td>
-                                    <td>@twitter</td>
+                                    {categories.map(c => (
+                                        <td key={c._id}>{c.name}</td>
+                                    ))}
                                 </tr>
                             </tbody>
                         </table>
