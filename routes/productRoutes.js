@@ -6,7 +6,8 @@ import {
         deleteProductController, 
         getProductController, 
         getSingleProductController, 
-        productPhotoController 
+        productPhotoController, 
+        updateProductController
     } from '../controllers/productController.js'
 
 const router = express.Router()
@@ -14,7 +15,13 @@ const router = express.Router()
 //routes
 
 //crete new product
-router.post('/create-product', requireSignIn, isAdmin, formidable(), createProductController)
+router.post(
+    '/create-product', 
+    requireSignIn, 
+    isAdmin, 
+    formidable(), 
+    createProductController
+);
 
 //get products
 router.get('/get-product', getProductController)
@@ -27,5 +34,14 @@ router.get('/product-photo/:pid', productPhotoController)
 
 //delete product
 router.delete('/product/:pid', deleteProductController)
+
+//update product
+router.put(
+    '/update-product/:pid', 
+    requireSignIn, 
+    isAdmin, 
+    formidable(), 
+    updateProductController
+);
 
 export default router;
