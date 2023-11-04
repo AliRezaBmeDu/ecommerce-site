@@ -33,7 +33,7 @@ export const createProductController = async (req, res) => {
         const products = new productModel({...req.fields, slug: slugify(name)})
         if (photo) {
             products.photo.data = fs.readFileSync(photo.path)
-            productModel.contentType = photo.type
+            products.photo.contentType = photo.type
         }
         await products.save()
         res.status(201).send({
@@ -48,6 +48,25 @@ export const createProductController = async (req, res) => {
             success: false,
             error,
             message: 'Error in creating product'
+        })
+    }
+}
+
+export const getProductController = async (req,res) => {
+    try{
+        const products = await productModel.find({}).select("-photo").limit(12).sort({createdAt: -1})
+        res.status(200).send({
+            success: true,
+            totalCount: products.length,
+            message: "Get products successfully",
+            products,
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            error,
+            message: 'Error in getting product'
         })
     }
 }
