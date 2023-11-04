@@ -80,6 +80,46 @@ const CreateProduct = () => {
                           </div>
                         )}
                       </div>
+                      <div className='mb-3'>
+                          <input 
+                            type="text" 
+                            value={name} 
+                            placeholder='Write a name'
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                      </div>
+                      <div className='mb-3'>
+                          <input 
+                            type="text" 
+                            value={description} 
+                            placeholder='Write description'
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                      </div>
+                      <div className='mb-3'>
+                          <input 
+                            type="text" 
+                            value={price} 
+                            placeholder='Write a price'
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                      </div>
+                      <div className='mb-3'>
+                          <input 
+                            type="text" 
+                            value={quantity} 
+                            placeholder='Write quantity'
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                      </div>
+                      <div className='mb-3'>
+                          <input 
+                            type="text" 
+                            value={name} 
+                            placeholder='Write a name'
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                      </div>
                     </div>
                 </div>
             </div>
