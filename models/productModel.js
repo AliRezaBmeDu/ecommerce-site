@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import fs from 'fs';
 
 const productSchema = new mongoose.Schema({
     name:{
@@ -19,7 +20,7 @@ const productSchema = new mongoose.Schema({
     },
     category:{
         type: mongoose.ObjectId,
-        ref: category,
+        ref: "Category",
         required: true,
     },
     quantity:{
