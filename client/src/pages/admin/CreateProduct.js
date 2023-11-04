@@ -15,6 +15,8 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("")
   const [quantity, setQuantity] = useState("")
   const [shipping, setShipping] = useState("")
+  const [category, setCategory] = useState("")
+  
 
   //get all cat
   const getAllCategory = async () => {
@@ -40,11 +42,18 @@ const CreateProduct = () => {
                     <h1>Create Product</h1>
                     <div className='m-1'>
                       <Select 
+                        className='form-select mb-3'
+                        onChange={(value)=>{setCategory(value)}}
                         bordered={false} 
                         placeholder='Select a category' 
                         size='large' 
                         showSearch
                       >
+                        {categories?.map((c) => {
+                          <Option key={c._id} value={c.name}>
+                            {c.name}
+                          </Option>
+                        })}
                       </Select>
                     </div>
                 </div>
