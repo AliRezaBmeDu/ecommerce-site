@@ -17,6 +17,7 @@ const CreateProduct = () => {
   const [shipping, setShipping] = useState("")
   const [category, setCategory] = useState("")
   
+  
 
   //get all cat
   const getAllCategory = async () => {
@@ -55,6 +56,18 @@ const CreateProduct = () => {
                           </Option>
                         })}
                       </Select>
+                      <div className="mb-3">
+                        <label className="btn btn-primary btn-outline-secondary col-md-12">
+                          { photo ? photo.name : "Upload Photo" }
+                          <input 
+                            type='file' 
+                            name="photo" 
+                            accept="images/*"
+                            onChange={(e) => setPhoto(e.target.files[0])}
+                            hidden
+                          />
+                        </label>
+                      </div>
                     </div>
                 </div>
             </div>
