@@ -47,6 +47,7 @@ const CreateCategory = () => {
         getAllCategory();
     }, [])
 
+    //update category
     const handleUpdate = async(e) => {
         e.preventDefault();
         try{
@@ -64,6 +65,23 @@ const CreateCategory = () => {
         } catch(error) {
             console.log(error)
             toast.error('something went wrong in editing category')
+        }
+    }
+
+    //delete category
+    const handleDelete = async(pId) => {
+        try{
+            const {data} = await axios.delete(`${process.env.REACT_APP_API}/api/v1/category/delete-category/${pId}`)
+            if (data.success) {
+                toast.success(`category is deleted`)
+                getAllCategory();
+            } else {
+                toast.message(data.message)
+            }
+
+        } catch(error) {
+            console.log(error)
+            toast.error('something went wrong in deleting category')
         }
     }
   return (
@@ -106,7 +124,14 @@ const CreateCategory = () => {
                                                 >
                                                     Edit
                                                 </button>
-                                                <button className='btn btn-danger ms-2'>Delete</button>
+                                                <button 
+                                                    className='btn btn-danger ms-2'
+                                                    onClick={() => {
+                                                        handleDelete(c._id)
+                                                    }}
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     </React.Fragment>
