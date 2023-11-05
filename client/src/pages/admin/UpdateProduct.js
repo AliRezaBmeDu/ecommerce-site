@@ -33,7 +33,7 @@ const UpdateProduct; = () => {
         setDescription(data.product.description);
         setQuantity(data.product.quantity);
         setShipping(data.product.shipping);
-        setCategory(data.product.category);
+        setCategory(data.product.category._id);
     }
   }
 
@@ -71,11 +71,12 @@ const handleUpdate = async (e) => {
     productData.append('quantity', quantity);
     photo && productData.append('photo', photo);
     productData.append('category', category);
-    const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/update-product/${id}`, productData)
+    const {data} = axios.put(`${process.env.REACT_APP_API}/api/v1/product/update-product/${id}`, productData)
     if(data?.success) {
       toast.error(data?.message)
     } else {
       toast.success('Product updated successfully');
+      navigate('/dashboard/admin/products')
     }
   } catch(error) {
     console.log(error)
@@ -102,7 +103,7 @@ const handleUpdate = async (e) => {
                 onChange={(value) => {
                   setCategory(value);
                 }}
-                value={category.name}
+                value={category}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c._id}>
