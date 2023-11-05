@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import {Select} from 'antd';
 import { useNavigate } from 'react-router-dom'
 
-const {option} = Select
+const {Option} = Select
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -44,13 +44,13 @@ const handleCreate = async (e) => {
   e.preventDefault();
   try{
     const productData = new FormData();
-    productData('name', name);
-    productData('description', description);
-    productData('price', price);
-    productData('quantity', quantity);
-    productData('photo', photo);
-    productData('category', category);
-    const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
+    productData.append('name', name);
+    productData.append('description', description);
+    productData.append('price', price);
+    productData.append('quantity', quantity);
+    productData.append('photo', photo);
+    productData.append('category', category);
+    const {data} = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
     if(data?.success) {
       toast.error(data?.message)
     } else {
