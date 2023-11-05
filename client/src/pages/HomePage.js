@@ -1,12 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
-import { useAuth } from '../context/auth';
 import axios from 'axios';
+import {Checkbox} from 'antd';
+import toast from 'react-hot-toast';
 
 const HomePage = () => {
-  const [auth, setAuth] = useAuth();
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([])
+
+  //get all cat
+  const getAllCategory = async () => {
+    try {
+        const {data} =  await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`)
+        console.log(`data:${data}`)
+        if (data?.success) {
+            setCategories(data.category);
+        }
+    } catch(error) {
+        console.log(error)
+        toast.error('something went wrong in getting category')
+    }
+};
+useEffect(() => {
+    getAllCategory();
+}, [])
 
   //get products
   const getAllProducts = async () => {
@@ -19,6 +37,16 @@ const HomePage = () => {
     }
   }
 
+  //filter by cat
+  const handleFilter = (value, id) => {
+    let all = [...checked]
+    if(value) {
+      all.push(id)
+    } else {
+      all.filter((c) => c!== id);
+    }
+    setChecked(all);
+  }
   useEffect(() => {
     getAllProducts();
   }, [])
@@ -27,8 +55,15 @@ const HomePage = () => {
     <Layout title={'Best offers'}>
         <h1>Homepage</h1>
         <div className='row mt-3'>
-          <div className='col-md-3'>
-            <h6 className='text-center'>Filter By Category</h6>
+          <div className='col-md-2'>
+            <h4 className='text-center'>Filter By Category</h4>
+            <div className='d-flex'>
+              {categories?.map((c) => (
+                <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)}>
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
           </div>
           <div className='col-md-9'>
             <h1 className='text-center'>All Products</h1>
@@ -44,6 +79,8 @@ const HomePage = () => {
                     <div className="card-body">
                       <h5 className="card-title">{p.name}</h5>
                       <p className="card-text">{p.description}</p>
+                      <button className='btn btn-primary ms-1'>More Details</button>
+                      <button className='btn btn-secondary ms-1'>Add to cart</button>
                     </div>
                   </div>
               ))}
