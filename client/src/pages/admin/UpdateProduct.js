@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 const {Option} = Select
 
-const UpdateProduct; = () => {
+const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
 
@@ -25,7 +25,7 @@ const UpdateProduct; = () => {
   //get single product
   const getSingleProduct = async () => {
     try {
-        const{data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-product/${params.slug}`)
+        const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-product/${params.slug}`)
         setName(data.product.name);
         setId(data.product._id)
         setDescription(data.product.description);
@@ -34,6 +34,8 @@ const UpdateProduct; = () => {
         setQuantity(data.product.quantity);
         setShipping(data.product.shipping);
         setCategory(data.product.category._id);
+    } catch (error) {
+        console.log(error);
     }
   }
 
