@@ -79,7 +79,7 @@ useEffect(() => {
             </div>
           </div>
           <div className='col-md-9'>
-            {JSON.stringify(checked, null, 4)}
+            {JSON.stringify(radio, null, 4)}
             <h1 className='text-center'>All Products</h1>
             <div className='d-flex flex-wrap'>
               <h1>products</h1>
