@@ -84,6 +84,20 @@ const handleUpdate = async (e) => {
   }
 }
 
+//delete product
+const handleDelete = async () => {
+    try {
+        let answer = window.prompt('Are you sure to delete the product? ');
+        if (!answer) return
+        const {data} = await axios.delete(`${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`)
+        toast.success("product deleted successfully")
+        navigate('/dashboard/admin/products')
+    } catch(error) {
+        console.log(error)
+        toast.error("Something went wrong while creating product")
+    }
+}
+
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3 dashboard">
@@ -200,6 +214,11 @@ const handleUpdate = async (e) => {
               <div className="mb-3">
                 <button className="btn btn-primary" onClick={handleUpdate}>
                   UPDATE PRODUCT
+                </button>
+              </div>
+              <div className="mb-3">
+                <button className="btn btn-danger" onClick={handleDelete}>
+                  DELETE PRODUCT
                 </button>
               </div>
             </div>
