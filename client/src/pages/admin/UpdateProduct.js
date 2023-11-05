@@ -69,7 +69,7 @@ const handleCreate = async (e) => {
     productData.append('description', description);
     productData.append('price', price);
     productData.append('quantity', quantity);
-    productData.append('photo', photo);
+    photo && productData.append('photo', photo);
     productData.append('category', category);
     const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
     if(data?.success) {
@@ -124,7 +124,7 @@ const handleCreate = async (e) => {
                 </label>
               </div>
               <div className="mb-3">
-                {photo && (
+                {photo ? : (
                   <div className="text-center">
                     <img
                       src={URL.createObjectURL(photo)}
@@ -133,6 +133,15 @@ const handleCreate = async (e) => {
                       className="img img-responsive"
                     />
                   </div>
+                ) : (
+                    <div className="text-center">
+                        <img
+                        src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`}
+                        alt="product_photo"
+                        height={"200px"}
+                        className="img img-responsive"
+                        />
+                    </div>
                 )}
               </div>
               <div className="mb-3">
