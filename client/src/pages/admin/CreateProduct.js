@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import AdminMenu from '../../components/layout/AdminMenu'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import {Select} from 'antd';
+import { useNavigate } from 'react-router-dom'
 
 const {option} = Select
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
+
   const [categories, setCategories] = useState([])
   const [photo, setPhoto] = useState("")
   const [name, setName] = useState("")
@@ -32,6 +35,34 @@ const CreateProduct = () => {
         toast.error('something went wrong in getting category')
     }
 };
+useEffect(() => {
+  getAllCategory();
+}, [])
+
+// create product function
+const handleCreate = async (e) => {
+  e.preventDefault();
+  try{
+    const productData = new FormData();
+    productData('name', name);
+    productData('description', description);
+    productData('price', price);
+    productData('quantity', quantity);
+    productData('photo', photo);
+    productData('category', category);
+    const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
+    if(data?.success) {
+      toast.success('Product created successfully');
+      navigate('/dashboard/admin/products')
+    } else {
+      toast.error(data?.error)
+    }
+  } catch(error) {
+    console.log(error)
+    toast.error("Something went wrong while creating product")
+  }
+}
+
   return (
     <Layout title={"Dashboard - Create Product"}>
       <div className="container-fluid m-3 p-3 dashboard">
