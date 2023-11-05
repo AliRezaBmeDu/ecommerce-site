@@ -50,8 +50,26 @@ useEffect(() => {
     setChecked(all);
   }
   useEffect(() => {
-    getAllProducts();
+    if(!checked.length || !radio.length) {
+      getAllProducts();
+    }
   }, [])
+
+  useEffect(() => {
+    if(checked.length || radio.length) filterProduct();
+  },[])
+
+  //get filter product
+
+  const filterProduct = async () => {
+    try {
+      const {data} = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/product-filters`, {checked, radio})
+      setProducts(data?.products)
+    } catch (error) {
+      console.log(error)
+      toast.error("Something went wrong while fetching the filter products")
+    }
+  }
 
   return (
     <Layout title={'Best offers'}>

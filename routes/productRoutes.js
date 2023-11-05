@@ -46,6 +46,6 @@ router.put(
 );
 
 // filter product
-router.get('/product-filters', productFiltersController)
+router.post('/product-filters', productFiltersController)
 
 export default router;
