@@ -52,10 +52,10 @@ const handleCreate = async (e) => {
     productData('category', category);
     const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
     if(data?.success) {
+      toast.error(data?.message)
+    } else {
       toast.success('Product created successfully');
       navigate('/dashboard/admin/products')
-    } else {
-      toast.error(data?.error)
     }
   } catch(error) {
     console.log(error)
