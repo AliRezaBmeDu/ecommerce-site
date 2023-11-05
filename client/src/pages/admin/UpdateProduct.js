@@ -124,7 +124,7 @@ const handleCreate = async (e) => {
                 </label>
               </div>
               <div className="mb-3">
-                {photo ? : (
+                {photo ? (
                   <div className="text-center">
                     <img
                       src={URL.createObjectURL(photo)}
@@ -136,10 +136,10 @@ const handleCreate = async (e) => {
                 ) : (
                     <div className="text-center">
                         <img
-                        src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`}
-                        alt="product_photo"
-                        height={"200px"}
-                        className="img img-responsive"
+                            src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${id}`}
+                            alt="product_photo"
+                            height={"200px"}
+                            className="img img-responsive"
                         />
                     </div>
                 )}
