@@ -61,7 +61,7 @@ useEffect(() => {
 }, [])
 
 // create product function
-const handleCreate = async (e) => {
+const handleUpdate = async (e) => {
   e.preventDefault();
   try{
     const productData = new FormData();
@@ -71,12 +71,11 @@ const handleCreate = async (e) => {
     productData.append('quantity', quantity);
     photo && productData.append('photo', photo);
     productData.append('category', category);
-    const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
+    const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/update-product/${id}`, productData)
     if(data?.success) {
       toast.error(data?.message)
     } else {
-      toast.success('Product created successfully');
-      navigate('/dashboard/admin/products')
+      toast.success('Product updated successfully');
     }
   } catch(error) {
     console.log(error)
@@ -198,7 +197,7 @@ const handleCreate = async (e) => {
                 </Select>
               </div>
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCreate}>
+                <button className="btn btn-primary" onClick={handleUpdate}>
                   UPDATE PRODUCT
                 </button>
               </div>
