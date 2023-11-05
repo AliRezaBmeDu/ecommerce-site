@@ -20,12 +20,14 @@ const UpdateProduct; = () => {
   const [quantity, setQuantity] = useState("")
   const [shipping, setShipping] = useState("")
   const [category, setCategory] = useState("")
+  const [id, setId] = useState("")
   
   //get single product
   const getSingleProduct = async () => {
     try {
         const{data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-product/${params.slug}`)
         setName(data.product.name);
+        setId(data.product._id)
         setDescription(data.product.description);
         setPrice(data.product.price);
         setDescription(data.product.description);
@@ -101,6 +103,7 @@ const handleCreate = async (e) => {
                 onChange={(value) => {
                   setCategory(value);
                 }}
+                value={category.name}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c._id}>
@@ -179,6 +182,7 @@ const handleCreate = async (e) => {
                   onChange={(value) => {
                     setShipping(value);
                   }}
+                  value={shipping ? "yes" : "no"}
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>
