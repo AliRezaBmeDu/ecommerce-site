@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import axios from 'axios';
-import {Checkbox} from 'antd';
+import {Checkbox, Radio} from 'antd';
 import toast from 'react-hot-toast';
+import { Prices } from '../components/Prices';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([])
+  const [radio, setRadio] = useState([])
 
   //get all cat
   const getAllCategory = async () => {
@@ -57,15 +59,27 @@ useEffect(() => {
         <div className='row mt-3'>
           <div className='col-md-2'>
             <h4 className='text-center'>Filter By Category</h4>
-            <div className='d-flex'>
+            <div className='d-flex flex-column'>
               {categories?.map((c) => (
                 <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)}>
                   {c.name}
                 </Checkbox>
               ))}
             </div>
+            
+            <h4 className='text-center'>Filter By Price</h4>
+            <div className='d-flex flex-column'>
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
+            </div>
           </div>
           <div className='col-md-9'>
+            {JSON.stringify(checked, null, 4)}
             <h1 className='text-center'>All Products</h1>
             <div className='d-flex flex-wrap'>
               <h1>products</h1>
