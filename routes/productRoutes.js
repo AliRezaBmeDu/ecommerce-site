@@ -6,7 +6,12 @@ import {
         deleteProductController, 
         getProductController, 
         getSingleProductController, 
+        productCountController, 
+        productFiltersController, 
+        productListController, 
         productPhotoController, 
+        relatedProductController, 
+        searchProductController, 
         updateProductController
     } from '../controllers/productController.js'
 
@@ -43,5 +48,20 @@ router.put(
     formidable(), 
     updateProductController
 );
+
+// filter product
+router.post('/product-filters', productFiltersController)
+
+// product count
+router.get('/product-count', productCountController)
+
+// product per page
+router.get('/product-list/:page', productListController)
+
+// search product
+router.get('/search/:keyword', searchProductController)
+
+// similar product
+router.get('/related-product/:pid/:cid', relatedProductController)
 
 export default router;
