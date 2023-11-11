@@ -6,18 +6,20 @@ import toast from 'react-hot-toast';
 import { Prices } from '../components/Prices';
 
 const HomePage = () => {
+  const reactApi = process.env.REACT_APP_API;
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([])
   const [radio, setRadio] = useState([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState(false)
 
 
   //get all cat
   const getAllCategory = async () => {
     try {
-        const {data} =  await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`)
+        const {data} =  await axios.get(`${reactApi}/api/v1/category/get-category`)
         console.log(`data:${data}`)
         if (data?.success) {
             setCategories(data.category);
@@ -35,9 +37,12 @@ useEffect(() => {
   //get products
   const getAllProducts = async () => {
     try {
-      const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/get-product`)
+      setLoading(true)
+      const {data} = await axios.get(`${reactApi}/api/v1/product/product-list/${page}`)
+      setLoading(false)
       setProducts(data.products)
     } catch (error) {
+      setLoading(false)
       console.log(error)
       toast.error("Something went wrong while fetching the products")
     }
@@ -46,9 +51,28 @@ useEffect(() => {
   // get total count
   const getTotal = async () => {
     try {
-      const {data} = await axios.get('/api/v1/product/prouduct-count')
+      const {data} = await axios.get(`${reactApi}/api/v1/product/prouduct-count`)
       setTotal(data?.total)
     } catch(error) {
+      console.log(error)
+      toast.error('something went wrong in getting product count')
+    }
+  }
+
+  useEffect(() => {
+    if(page === 1) return
+    loadMore();
+  }, [page])
+
+  // load more
+  const loadMore = async () => {
+    try {
+      setLoading(true)
+      const [data] = await axios.get(`${reactApi}/v1/product/product-list/${page}`)
+      setProducts(...products, ...data?.products)
+      setLoading(false)
+    } catch(error) {
+      setLoading(false)
       console.log(error)
       toast.error('something went wrong in getting product count')
     }
@@ -79,7 +103,7 @@ useEffect(() => {
 
   const filterProduct = async () => {
     try {
-      const {data} = await axios.post(`${process.env.REACT_APP_API}/api/v1/product/product-filters`, {checked, radio})
+      const {data} = await axios.post(`${reactApi}/api/v1/product/product-filters`, {checked, radio})
       setProducts(data?.products)
     } catch (error) {
       console.log(error)
@@ -128,7 +152,7 @@ useEffect(() => {
               {products?.map(p => (
                   <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
                     <img
-                      src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                      src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
                       alt={p.name}
                     />
@@ -142,8 +166,19 @@ useEffect(() => {
                   </div>
               ))}
             </div>
-            <div>
-                {total}
+            <div className="m-2 p-3">
+                {
+                  products && products.length < total && (
+                  <button 
+                    className='btn btn-warning'
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setPage(page + 1)
+                    }}
+                  >
+                    {loading ? "loading" : "load more"}
+                  </button>
+                )}
             </div>
           </div>
         </div>
