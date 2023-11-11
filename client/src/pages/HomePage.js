@@ -10,6 +10,9 @@ const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([])
   const [radio, setRadio] = useState([])
+  const [total, setTotal] = useState(0)
+  const [page, setPage] = useState(1)
+
 
   //get all cat
   const getAllCategory = async () => {
@@ -26,6 +29,7 @@ const HomePage = () => {
 };
 useEffect(() => {
     getAllCategory();
+    getTotal();
 }, [])
 
   //get products
@@ -38,6 +42,18 @@ useEffect(() => {
       toast.error("Something went wrong while fetching the products")
     }
   }
+
+  // get total count
+  const getTotal = async () => {
+    try {
+      const {data} = await axios.get('/api/v1/product/prouduct-count')
+      setTotal(data?.total)
+    } catch(error) {
+      console.log(error)
+      toast.error('something went wrong in getting product count')
+    }
+  }
+
 
   //filter by cat
   const handleFilter = (value, id) => {
@@ -125,6 +141,9 @@ useEffect(() => {
                     </div>
                   </div>
               ))}
+            </div>
+            <div>
+                {total}
             </div>
           </div>
         </div>
