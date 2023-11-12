@@ -9,6 +9,19 @@ const CartPage = () => {
     const [cart ,setCart] = useCart();
     const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
+    
+    //detele item
+  const removeCartItem = (pid) => {
+        try {
+            let myCart = [...cart];
+            let index = myCart.findIndex((item) => item._id === pid);
+            myCart.splice(index, 1);
+            setCart(myCart);
+            localStorage.setItem("cart", JSON.stringify(myCart));
+        } catch (error) {
+            console.log(error);
+        }
+    };
   return (
     <Layout>
         <div className='cart-page'>
@@ -35,15 +48,28 @@ const CartPage = () => {
                         <div className="row card flex-row" key={p._id}>
                             <div className="col-md-4">
                                 <img
-                                src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
-                                className="card-img-top"
-                                alt={p.name}
-                                width="100%"
-                                height={"130px"}
+                                    src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
+                                    className="card-img-top"
+                                    alt={p.name}
+                                    width="100%"
+                                    height={"130px"}
                                 />
                             </div>
+                            <div className="col-md-4">
+                                <p>{p.name}</p>
+                                <p>{p.description.substring(0, 30)}</p>
+                                <p>Price : {p.price}</p>
+                            </div>
+                            <div className="col-md-4 cart-remove-btn">
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => removeCartItem(p._id)}
+                                >
+                                Remove
+                                </button>
+                            </div>
                         </div>
-                    )}
+                    ))}
                     </div>
                 </div>
             </div>
