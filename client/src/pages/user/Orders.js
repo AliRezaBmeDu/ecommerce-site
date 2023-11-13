@@ -3,7 +3,7 @@ import UserMenu from "../../components/Layout/UserMenu";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
-import Layout from "antd/es/layout/layout";
+import Layout from '../components/layout/Layout'
 
 const Orders = () => {
     const reactApi = process.env.REACT_APP_API
