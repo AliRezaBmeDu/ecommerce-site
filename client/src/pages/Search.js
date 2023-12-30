@@ -4,6 +4,7 @@ import { useSearch } from '../context/search'
 
 const Search = () => {
     const [values, setValues] = useSearch()
+    const reactApi = process.env.REACT_APP_API;
   return (
     <Layout title={'Search Results'}>
         <div className='container'>
@@ -17,7 +18,7 @@ const Search = () => {
                 </h6>
                 <div className='d-flex flex-wrap'>
                     <h1>products</h1>
-                    {products?.map(p => (
+                    {values?.map(p => (
                         <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
                             <img
                             src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
