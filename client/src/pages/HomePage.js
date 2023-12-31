@@ -26,7 +26,7 @@ const HomePage = () => {
   const getAllCategory = async () => {
     try {
         const {data} =  await axios.get(`${reactApi}/api/v1/category/get-category`)
-        console.log(`data:${data}`)
+        // console.log(`data:${data}`)
         if (data?.success) {
             setCategories(data.category);
         }
@@ -57,7 +57,7 @@ useEffect(() => {
       console.log('React api:', reactApi);
       const {data} = await axios.get(`${reactApi}/api/v1/product/product-list/${page}`)
       setLoading(false)
-      console.log('Products: ', data.products);
+      // console.log('Products: ', data.products);
       setProducts(data.products)
     } catch (error) {
       setLoading(false)
