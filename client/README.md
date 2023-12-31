@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# Ecommerce Site - ShopSphere
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a name="readme-top"></a>
 
-## Available Scripts
+# 📗 Table of Contents
 
-In the project directory, you can run:
+- [:book: About the Project](#about-project)
+  - [:hammer_and_wrench: Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+- [:computer: Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+- [:busts_in_silhouette: Authors](#authors)
+- [:telescope: Future Features](#future-features)
+- [:handshake: Contributing](#contributing)
+- [:star:️ Show your support](#support)
+- [:pray: Acknowledgements](#acknowledgements)
+- [:question: FAQ](#faq)
+- [:memo: License](#license)
 
-### `npm start`
+# 📖 ShopSphere <a name="about-project"></a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**[Shopsphere]** is a rubust e-commerce platform crafted with a full stack of Javascript technologies, leveraging React for dynamic front=end interactions and Node.js for seamless server-side functionality. The platorm employs MongoDB as its database backbone, ensuring efficient data management. Users can enjoy a personalized experience by signing in to their accounts, effortlessly adding desired items to their carts, and completeing transactions. With multiple filters, finding the perfect product is a breeze, while dedicated product details and categorized pages enhance the shopping journey. Shopsphere combines user-friendly features with a modern tech stack, offering a streamlined and enoyable online shopping experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## 🛠 Built With <a name="built-with"></a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tech Stack <a name="tech-stack"></a>
 
-### `npm run build`
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li>NodeJS</li>
+  </ul>
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li>React</li>
+  </ul>
+</details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+<summary>Database</summary>
+  <ul>
+    <li>MongoDB Atlas</li>
+  </ul>
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Key Features <a name="key-features"></a>
 
-### `npm run eject`
+- **[Create User Account]**
+- **[Dedicated dashboard and profile for Users]**
+- **[Different categories]**
+- **[Product details]**
+- **[Multiple filters]**
+- **[Add Items to cart]**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 💻 Getting Started <a name="getting-started"></a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To get a local copy up and running, follow these steps.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
 
-## Learn More
+In order to run this project you need:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Install React
+- Install NodeJS
+- Install MongoDB
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Setup
+Clone this repository to your desired folder:
 
-### Code Splitting
+```sh
+    git clone https://github.com/RicardoEgas/ecommerce-site.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Install
 
-### Analyzing the Bundle Size
+Install this project with:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Server side:
+```sh
+  cd ecommerce-site
+  npm install
+```
+Client Side:
+```sh
+  cd cliet
+  npm install
+```
 
-### Making a Progressive Web App
+### Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To run the project, execute the following commands in different terminals:
 
-### Advanced Configuration
+```sh
+  cd ecommerce-site
+  npm start
+```
+```sh
+  cd client
+  npm start
+```
+Then go to the 'http://localhost:3000/' to get started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Deployment
+## 👥 Authors <a name="authors"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+👤 **MOHAMMED ALI REZA**
 
-### `npm run build` fails to minify
+- GitHub: [@githubhandle](https://github.com/AliRezaBmeDu)
+- Twitter: [@twitterhandle](https://twitter.com/share_insider)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mohammad-ali-reza-25686428b/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [] **[Add A payment method]**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/RicardoEgas/ecommerce-site/issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ⭐ Show your support <a name="support"></a>
+
+If you like this project please show support by staring :star:️.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🙏Acknowledgments <a name="acknowledgements"></a>
+
+- I would like to thank the official documetation of React, MongoDB and Nodejs for providing adequate learning material and a safe learning environment.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](../LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
