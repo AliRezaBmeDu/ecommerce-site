@@ -6,18 +6,20 @@ import toast from 'react-hot-toast';
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cart';
+import { AiOutlineReload } from "react-icons/ai";
+
 
 const HomePage = () => {
   const reactApi = process.env.REACT_APP_API;
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [checked, setChecked] = useState([])
-  const [radio, setRadio] = useState([])
-  const [total, setTotal] = useState(0)
-  const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([]);
+  const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
 
   //get all cat
@@ -33,6 +35,16 @@ const HomePage = () => {
         toast.error('something went wrong in getting category')
     }
 };
+// get total count
+const getTotal = async () => {
+  try {
+    const {data} = await axios.get(`${reactApi}/api/v1/product/product-count`)
+    setTotal(data?.total)
+  } catch(error) {
+    console.log(error)
+    toast.error('something went wrong in getting product count')
+  }
+}
 useEffect(() => {
     getAllCategory();
     getTotal();
@@ -42,8 +54,10 @@ useEffect(() => {
   const getAllProducts = async () => {
     try {
       setLoading(true)
+      console.log('React api:', reactApi);
       const {data} = await axios.get(`${reactApi}/api/v1/product/product-list/${page}`)
       setLoading(false)
+      console.log('Products: ', data.products);
       setProducts(data.products)
     } catch (error) {
       setLoading(false)
@@ -52,16 +66,7 @@ useEffect(() => {
     }
   }
 
-  // get total count
-  const getTotal = async () => {
-    try {
-      const {data} = await axios.get(`${reactApi}/api/v1/product/prouduct-count`)
-      setTotal(data?.total)
-    } catch(error) {
-      console.log(error)
-      toast.error('something went wrong in getting product count')
-    }
-  }
+  
 
   useEffect(() => {
     if(page === 1) return
@@ -101,7 +106,7 @@ useEffect(() => {
 
   useEffect(() => {
     if(checked.length || radio.length) filterProduct();
-  },[])
+  },[checked, radio])
 
   //get filter product
 
@@ -115,9 +120,12 @@ useEffect(() => {
     }
   }
 
+  const handleDetailButton = (slugVal) => {
+    navigate(`/product/${slugVal}`)
+  }
+
   return (
     <Layout title={'Best offers'}>
-        <h1>Homepage</h1>
         <div className='row mt-3'>
           <div className='col-md-2'>
             <h4 className='text-center'>Filter By Category</h4>
@@ -149,14 +157,15 @@ useEffect(() => {
             </div>
           </div>
           <div className='col-md-9'>
-            {JSON.stringify(radio, null, 4)}
+            {/* {JSON.stringify(radio, null, 4)} */}
             <h1 className='text-center'>All Products</h1>
             <div className='d-flex flex-wrap'>
               <h1>products</h1>
               {products?.map(p => (
                   <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
                     <img
-                      src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
+                      src= {`${reactApi}/api/v1/product/product-photo/${p._id}`}
+                      // src= 'a.jpg'
                       className="card-img-top"
                       alt={p.name}
                     />
@@ -165,8 +174,12 @@ useEffect(() => {
                       <p className="card-text">{p.description.substring(30)}</p>
                       <p className="card-text">$ {p.price}</p>
                       <button 
-                        className='btn btn-primary ms-1' 
-                        onClick={navigate(`/product/${p.slug}`)}
+                        className='btn btn-primary ms-1'
+                        onClick = { () => {
+                            handleDetailButton(p.slug)
+                          }
+                        }
+                        // onClick={navigate(`/product/${p.slug}`)}
                       >
                         More Details
                       </button>

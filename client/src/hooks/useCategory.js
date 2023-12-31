@@ -1,15 +1,16 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-export default const useCategory = () => {
+export default function useCategory() {
     const reactApi = process.env.REACT_APP_API
     const [categories, setCategories] = useState([])
 
     // get cat
     const getCategories = async () => {
         try {
-            const {data} = axios.get(`${reactApi}/api/v1/category/get-category`)
-            setCategories(data?.categoy)
+            const {data} = await axios.get(`${reactApi}/api/v1/category/get-category`)
+            setCategories(data?.category)
+            
         } catch (error) {
             console.log(error)
         }
@@ -18,6 +19,6 @@ export default const useCategory = () => {
     useEffect(() => {
         getCategories()
     },[])
-    
+    console.log('categories: ', categories)
   return categories;
 }
