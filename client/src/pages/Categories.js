@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Categories = () => {
     const categories = useCategory();
-    console.log('categories at page: ', categories);
+    // console.log('categories at page: ', categories);
   return (
     <Layout title={"All Categories"}>
         <div className='container'>

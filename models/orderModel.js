@@ -13,7 +13,7 @@ buyer: {
 },
 status: {
     type: String,
-    defalut: 'Not Process',
+    default: 'Not Process',
     enum: ['Not Process', 'Processing', 'Shipped', 'delivered', 'cancel'],
 }
 }, {timestamps: true});
