@@ -39,12 +39,12 @@ router.get('/admin-auth', requireSignIn, isAdmin, (req, res) => {
 router.put('/profile', requireSignIn, updateProfileController)
 
 // orders
-router.get('/order', requireSignIn, getOrdersController)
+router.get('/orders', requireSignIn, getOrdersController)
 
 // all orders
 router.get('/all-order', requireSignIn, isAdmin, getAllOrdersController)
 
 // order status update
-router.put('/order-status/:orderId', registerController, isAdmin, orderStatusController)
+router.put('/order-status/:orderId', requireSignIn, isAdmin, orderStatusController)
 
 export default router

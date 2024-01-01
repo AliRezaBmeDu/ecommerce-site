@@ -20,13 +20,13 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  var count = 0;
 
 
   //get all cat
   const getAllCategory = async () => {
     try {
         const {data} =  await axios.get(`${reactApi}/api/v1/category/get-category`)
-        console.log(`data:${data}`)
         if (data?.success) {
             setCategories(data.category);
         }
@@ -48,16 +48,15 @@ const getTotal = async () => {
 useEffect(() => {
     getAllCategory();
     getTotal();
+    count += 1;
 }, [])
 
   //get products
   const getAllProducts = async () => {
     try {
       setLoading(true)
-      console.log('React api:', reactApi);
       const {data} = await axios.get(`${reactApi}/api/v1/product/product-list/${page}`)
       setLoading(false)
-      console.log('Products: ', data.products);
       setProducts(data.products)
     } catch (error) {
       setLoading(false)
@@ -157,8 +156,7 @@ useEffect(() => {
             </div>
           </div>
           <div className='col-md-9'>
-            {/* {JSON.stringify(radio, null, 4)} */}
-            <h1 className='text-center'>All Products</h1>
+            <h1 className='text-center'>All Products {count}</h1>
             <div className='d-flex flex-wrap'>
               <h1>products</h1>
               {products?.map(p => (

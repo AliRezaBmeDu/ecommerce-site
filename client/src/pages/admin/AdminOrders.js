@@ -22,7 +22,7 @@ const AdminOrders = () => {
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get(`$[reactApi}/api/v1/auth/all-orders`);
+      const { data } = await axios.get(`${reactApi}/api/v1/auth/all-order`);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -38,6 +38,7 @@ const AdminOrders = () => {
       const { data } = await axios.put(`${reactApi}/api/v1/auth/order-status/${orderId}`, {
         status: value,
       });
+      toast.success("Order status changed")
       getOrders();
     } catch (error) {
       console.log(error);
@@ -53,7 +54,7 @@ const AdminOrders = () => {
           <h1 className="text-center">All Orders</h1>
           {orders?.map((o, i) => {
             return (
-              <div className="border shadow">
+              <div className="border shadow" key={o._id}>
                 <table className="table">
                   <thead>
                     <tr>

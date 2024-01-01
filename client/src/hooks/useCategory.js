@@ -19,6 +19,6 @@ export default function useCategory() {
     useEffect(() => {
         getCategories()
     },[])
-    console.log('categories: ', categories)
+    // console.log('categories: ', categories)
   return categories;
 }
