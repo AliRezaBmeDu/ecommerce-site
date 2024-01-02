@@ -115,7 +115,7 @@ Then go to the 'http://localhost:3000/' to get started
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **MOHAMMED ALI REZA**
+👤 **Mohammad Ali Reza**
 
 - GitHub: [@githubhandle](https://github.com/AliRezaBmeDu)
 - Twitter: [@twitterhandle](https://twitter.com/share_insider)
