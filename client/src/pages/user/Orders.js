@@ -6,7 +6,7 @@ import moment from "moment";
 import Layout from "../../components/layout/Layout";
 
 const Orders = () => {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
     const [orders, setOrders] = useState([]);
     const [auth, setAuth] = useAuth();
     const getOrders = async () => {

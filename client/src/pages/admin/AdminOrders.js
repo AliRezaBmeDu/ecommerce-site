@@ -9,7 +9,7 @@ import { Select } from "antd";
 const { Option } = Select;
 
 const AdminOrders = () => {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
   const [status, setStatus] = useState([
     "Not Process",
     "Processing",

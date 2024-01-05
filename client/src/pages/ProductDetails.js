@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout/Layout'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import "../styles/ProductDetailsStyles.css";
 
 const ProductDetails = () => {
-  const reactApi = process.env.REACT_APP_API
+  const reactApi = 'http://localhost:8080';
   const params = useParams();
   const [product, setProduct] = useState({})
   const [relatedProducts, setRelatedProducts] = useState([])
@@ -40,7 +41,7 @@ const ProductDetails = () => {
         <div className='row container mt-2'>
           <div className='col-md-6'>
             <img
-              src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
+              src={`${reactApi}/api/v1/product/product-photo/${product._id}`}
               className="card-img-top"
               alt={product.name}
               height={'300px'}

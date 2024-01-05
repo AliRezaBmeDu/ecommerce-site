@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DropIn from 'braintree-web-drop-in-react';
 import toast from 'react-hot-toast';
+import "../styles/CartStyles.css";
 
 const CartPage = () => {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
     const [cart ,setCart] = useCart();
     const [auth, setAuth] = useAuth();
     const navigate = useNavigate();
@@ -48,7 +49,7 @@ const CartPage = () => {
     // get payment gateway token
     const getToken = async () => {
         try {
-            const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/braintree/token`)
+            const {data} = await axios.get(`${reactApi}/api/v1/product/braintree/token`)
             setClientToken(data?.clientToken)
         } catch (error) {
             console.log(error)
@@ -82,7 +83,7 @@ const CartPage = () => {
 
   return (
     <Layout>
-        <div className='cart-page'>
+        <div className='cart-page mb-5'>
             <div className='row'>
                 <div className="col-md-12">
                     <h1 className="text-center bg-light p-2 mb-1">
@@ -99,36 +100,36 @@ const CartPage = () => {
                     </h1>
                 </div>
             </div>
-            <div className="container ">
-                <div className="row ">
-                    <div className="col-md-7  p-0 m-0">
-                    {cart?.map((p) => (
-                        <div className="row card flex-row" key={p._id}>
-                            <div className="col-md-4">
-                                <img
-                                    src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
-                                    className="card-img-top"
-                                    alt={p.name}
-                                    width="100%"
-                                    height={"130px"}
-                                />
+            <div className="container-fluid ">
+                <div className="row">
+                    <div className="col-md-7  p-0 m-0 cards-container">
+                        {cart?.map((p) => (
+                            <div className="row card flex-row mt-3 mb-3 cart-card" key={p._id}>
+                                <div className="col-md-4">
+                                    <img
+                                        src={`${reactApi}/api/v1/product/product-photo/${p._id}`}
+                                        className="card-img-top img-fluid"
+                                        alt={p.name}
+                                        
+                                    />
+                                </div>
+                                <div className="col-md-4">
+                                    <p>{p.name}</p>
+                                    <p>{p.description.substring(0, 30)}</p>
+                                    <p>Price : {p.price}</p>
+                                </div>
+                                <div className="col-md-4 cart-remove-btn">
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => removeCartItem(p._id)}
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
                             </div>
-                            <div className="col-md-4">
-                                <p>{p.name}</p>
-                                <p>{p.description.substring(0, 30)}</p>
-                                <p>Price : {p.price}</p>
-                            </div>
-                            <div className="col-md-4 cart-remove-btn">
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => removeCartItem(p._id)}
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
                     </div>
+
                     <div className="col-md-5 cart-summary ">
                         <h2>Cart Summary</h2>
                         <p>Total | Checkout | Payment</p>

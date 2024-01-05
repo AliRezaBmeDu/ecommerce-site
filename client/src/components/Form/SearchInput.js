@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const SearchInput = () => {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
     const [values, setValues] = useSearch()
     const navigate = useNavigate()
 

@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 export default function useCategory() {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
     const [categories, setCategories] = useState([])
 
     // get cat

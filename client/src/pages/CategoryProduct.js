@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/layout/Layout'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import "../styles/CategoryProductStyles.css";
 
 const CategoryProduct = () => {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
     const [ products, setProducts ] = useState([])
     const [ category, setCategory ] = useState([])
     const params = useParams()

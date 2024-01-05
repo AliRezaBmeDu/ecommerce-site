@@ -4,7 +4,7 @@ import { useSearch } from '../context/search'
 
 const Search = () => {
     const [values, setValues] = useSearch()
-    const reactApi = process.env.REACT_APP_API;
+    const reactApi = 'http://localhost:8080';
   return (
     <Layout title={'Search Results'}>
         <div className='container'>

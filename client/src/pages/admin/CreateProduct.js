@@ -19,13 +19,14 @@ const CreateProduct = () => {
   const [quantity, setQuantity] = useState("")
   const [shipping, setShipping] = useState("")
   const [category, setCategory] = useState("")
+  const reactApi = 'http://localhost:8080';
   
   
 
   //get all cat
   const getAllCategory = async () => {
     try {
-        const {data} =  await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`)
+        const {data} =  await axios.get(`${reactApi}/api/v1/category/get-category`)
         console.log(`data:${data}`)
         if (data?.success) {
             setCategories(data.category);
@@ -50,7 +51,7 @@ const handleCreate = async (e) => {
     productData.append('quantity', quantity);
     productData.append('photo', photo);
     productData.append('category', category);
-    const {data} = axios.post(`${process.env.REACT_APP_API}/api/v1/product/create-product`, productData)
+    const {data} = axios.post(`${reactApi}/api/v1/product/create-product`, productData)
     if(data?.success) {
       toast.error(data?.message)
     } else {

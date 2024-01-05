@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Layout from "../../components/layout/Layout";
 const Profile = () => {
-    const reactApi = process.env.REACT_APP_API
+    const reactApi = 'http://localhost:8080';
   //context
   const [auth, setAuth] = useAuth();
   //state
