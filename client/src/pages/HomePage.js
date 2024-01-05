@@ -47,7 +47,6 @@ const getTotal = async () => {
 useEffect(() => {
     getAllCategory();
     getTotal();
-    count += 1;
 }, [])
 
   //get products
