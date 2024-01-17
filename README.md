@@ -24,7 +24,7 @@
 
 # 📖 ShopSphere <a name="about-project"></a>
 
-**[Shopsphere]** is a rubust e-commerce platform crafted with a full stack of Javascript technologies, leveraging React for dynamic front=end interactions and Node.js for seamless server-side functionality. The platorm employs MongoDB as its database backbone, ensuring efficient data management. Users can enjoy a personalized experience by signing in to their accounts, effortlessly adding desired items to their carts, and completeing transactions. With multiple filters, finding the perfect product is a breeze, while dedicated product details and categorized pages enhance the shopping journey. Shopsphere combines user-friendly features with a modern tech stack, offering a streamlined and enoyable online shopping experience.
+**[Shopsphere]** is a rubust e-commerce platform crafted with a full stack of Javascript technologies, leveraging React for dynamic front-end interactions and Node.js for seamless server-side functionality. The platorm employs MongoDB as its database backbone, ensuring efficient data management. Users can enjoy a personalized experience by signing in to their accounts, effortlessly adding desired items to their carts, and completeing transactions. With multiple filters, finding the perfect product is a breeze, while dedicated product details and categorized pages enhance the shopping journey. Shopsphere combines user-friendly features with a modern tech stack, offering a streamlined and enoyable online shopping experience.
 
 
 ## 🛠 Built With <a name="built-with"></a>
